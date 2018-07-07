@@ -1,0 +1,14 @@
+package: pokedex
+ignore:
+- pokedex
+import:
+- package: github.com/sirupsen/logrus
+  version: ^1.0.5
+- package: golang.org/x/sys
+  subpackages:
+  - unix
+- package: github.com/go-chi/chi
+  version: ^3.3.2
+- package: golang.org/x/net
+  subpackages:
+  - context
