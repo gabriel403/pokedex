@@ -41,7 +41,16 @@ func main() {
 	listen := fmt.Sprintf(":%s", "8080")
 	log.Debug("Listening on", listen)
 
-	if err := http.ListenAndServe(listen, router); err != nil {
+	var err error
+
+	if len(os.Getenv("POKEDEX_HTTP_TLS_CERTIFICATE")) > 0 && len(os.Getenv("POKEDEX_HTTP_TLS_KEY")) > 0 {
+		log.Info("Listen on TLS")
+		err = http.ListenAndServeTLS(listen, os.Getenv("POKEDEX_HTTP_TLS_CERTIFICATE"), os.Getenv("POKEDEX_HTTP_TLS_KEY"), router)
+	} else {
+		err = http.ListenAndServe(listen, router)
+	}
+
+	if err != nil {
 		log.Fatal(err, "Listen and serve error")
 	}
 }
