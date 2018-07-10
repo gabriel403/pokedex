@@ -14,6 +14,7 @@ WORKDIR /go/src/pokedex
 RUN go build -o pokedex-parser cmd/parser/*.go
 
 FROM alpine:latest
+RUN apk add --no-cache ca-certificates
 COPY --from=parser-builder /go/src/pokedex/pokedex-parser /app/
 VOLUME [ "/data" ]
 WORKDIR /app/
