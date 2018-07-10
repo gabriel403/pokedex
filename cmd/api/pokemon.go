@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"net/http"
 
@@ -43,7 +44,7 @@ func getPokemon(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAsset(w http.ResponseWriter, r *http.Request) {
-	asset := r.Context().Value("asset").([]byte)
+	asset := r.Context().Value("asset").(*bytes.Buffer)
 
 	w.Header().Set("Content-Type", http.DetectContentType(asset))
 	w.WriteHeader(200)
