@@ -92,5 +92,6 @@ func GetPokemon(id int) (interface{}, error) {
 }
 
 func GetAsset(fileName string) (*bytes.Buffer, error) {
+	log.Debugf("Attempting to read asset: %+s as %+s", fileName, file.SpritesOutputDirectory+fileName)
 	return file.StreamFileOut(file.SpritesOutputDirectory + fileName)
 }
