@@ -4,8 +4,8 @@ import (
 	"os"
 )
 
-const (
-	OutputDirectory        = "assets/"
+var (
+	OutputDirectory        = os.Getenv("POKEDEX_ASSETS_DIR")
 	PokemonOutputDirectory = OutputDirectory + "pokemon/"
 	SpritesOutputDirectory = OutputDirectory + "sprites/"
 )
